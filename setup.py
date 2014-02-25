@@ -75,7 +75,7 @@ setup(
     license='GPLv2',
     author='RERO',
     author_email='Johnny.Mariethoz@rero.ch',
-    description='Elasticsearch Invenio support',
+    description='To test Elasticsearch for Invenio',
     long_description=__doc__,
     packages=packages,
     #package_dir={'invenio_docs': 'docs'},
