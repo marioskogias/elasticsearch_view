@@ -3,7 +3,7 @@
 2) Clone the project from github
 3) cdvirtualenv
 4) mkdir src; cd src
-5) ~/src/git-new-workdir ~/src/elasticsearch-view es-view
+5) ~/src/git-new-workdir ~/src/elasticsearch_view es-view
 6) cd es-view
 7) pip install -e .
 8) Check that PACKAGES contain "invenio_demosite", "elasticsearch_view.modules.*", else set it via inveniomanage
