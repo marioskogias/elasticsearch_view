@@ -1,0 +1,12 @@
+0) Download and install elasticsearch from www.elasticsearch.org and check that elasticsearch is in your PATH
+1) Install pu branch of Invenio and his corresponding demo-site.
+2) Clone the project from github
+3) cdvirtualenv
+4) mkdir src; cd src
+5) ~/src/git-new-workdir ~/src/elasticsearch-view es-view
+6) cd es-view
+7) pip install -e .
+8) Check that PACKAGES contain "invenio_demosite", "elasticsearch_view.modules.*", else set it via inveniomanage
+9) foreman start
+
+If you're lucky go to http://localhost:4000/es
