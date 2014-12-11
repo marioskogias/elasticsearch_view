@@ -66,14 +66,13 @@
 				<div class="row">
 					<div class="col-sm-12 col-xs-12">
 						{{ format_record(recid, "hb", ln="en")|safe }}
-						{{ '<hr/>'|safe if not loop.last }}
-						{%- if document.results.highlights.get(recid, {}).get("abstract.summary") -%}
 						<ul class="list-group highlights">
-							{%- for hl in document.results.highlights.get(recid, {}).get("abstract.summary") -%}
+                            {%- for k,f in document.results.highlights.get(recid, {}).iteritems() -%}
+							{%- for hl in f -%}
 							<li class="list-group-item">{{ hl|safe }}</li>
 							{%- endfor -%}
-						</ul>
-						{%- endif -%}
+							{%- endfor -%}
+                        </ul>
 					</div>
 				</div>
 			</div>
