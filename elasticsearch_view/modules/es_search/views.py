@@ -44,10 +44,18 @@ from invenio.ext.template.context_processor import \
 from invenio.modules.formatter import format_record
 from invenio.base.decorators import wash_arguments, templated
 
+from invenio.ext.elasticsearch.config import es_config
+
 blueprint = Blueprint('es_search', __name__, url_prefix='/es',
                       template_folder='templates', static_folder='static')
 
 default_breadcrumb_root(blueprint, '.es_search')
+
+# This is wrong. Just for demo purposes
+def format_filters(f):
+    k,v = f.split(":")
+    real_k = es_config.aggs.get(k)['terms']['field']
+    return {real_k: v}
 
 @blueprint.route('/')
 @register_menu(blueprint, 'main.es_search', _('New Search'), order=99)
@@ -60,11 +68,9 @@ def search(p, of, so, rm):
     query = request.args.get("p", "*")
     if not query:
         query = "*"
-    facet_filters = []
-    for ff in request.args.getlist("facet_filter"):
-        facet_filters.append((ff.split(":")))
+    facet_filters = map(format_filters, request.args.getlist("facet_filter"))
     res = current_app.extensions.get("elasticsearch").search(query,
-            facet_filters=facet_filters)
+        filters=facet_filters)
     class DOC:
         results = res
 

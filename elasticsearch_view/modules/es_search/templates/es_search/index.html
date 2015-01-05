@@ -41,7 +41,7 @@
 			<ul class="context list-unstyled">
 			{%- for terms in values.buckets -%}
   			{%- set args = request.args.copy() -%}
-            {%- do args.update({'facet_filter': "facet_"+name+":"+terms.key}) -%}
+            {%- do args.update({'facet_filter': name+":"+terms.key}) -%}
 			<li><a href={{ url_for('.search', **args)}}>{{ terms.key.split("/")[-1] }} ({{ terms.doc_count }})</a></li>
 			{%- endfor -%}
 			</ul>
